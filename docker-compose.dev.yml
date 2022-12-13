@@ -1,0 +1,21 @@
+# =Docker file for development=
+#
+# > docker-compose -f docker-compose.base.yml -f docker-compose.dev.yml [-f docker-compose.m1.yml] up
+#
+# (or run scripts/start)
+
+version: "3.9"
+
+services:
+  db:
+    volumes:
+      - "pg_data:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+
+  hasura:
+    ports:
+      - "8080:8080"
+
+volumes:
+  pg_data:

@@ -4,8 +4,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 
 import express, { NextFunction, Request, Response } from 'express';
-import promMid from 'express-prometheus-middleware';
-import Prometheus from 'prom-client';
+
 import StatusCodes from 'http-status-codes';
 import 'express-async-errors';
 import winston from 'winston';
@@ -40,7 +39,6 @@ app.use(
     stream: {
       write: (message) => {
         let jsonMessage = JSON.parse(message);
-
         if (!isEmpty(jsonMessage['headers'])) {
           jsonMessage = {
             ...jsonMessage,
@@ -62,18 +60,6 @@ app.use(
         }
       },
     },
-    skip: function (req, _res) {
-      if (process.env.NODE_ENV === 'development') {
-        return (
-          req.url === '/healthz' ||
-          req.url === '/serviceSmsQueue' ||
-          req.url === '/servicePushQueue' ||
-          req.url === '/auth/dispatcher/clearExpiredDispatcherSessionsAsDriver'
-        );
-      } else {
-        return false;
-      }
-    },
   }),
 );
 
@@ -81,15 +67,6 @@ app.use(
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet());
 }
-
-// Metrics
-app.use(
-  promMid({
-    metricsPath: '/metrics',
-    collectDefaultMetrics: true,
-    requestDurationBuckets: Prometheus.exponentialBuckets(0.125, 2, 8),
-  }),
-);
 
 // Print API errors
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

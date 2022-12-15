@@ -1,0 +1,19 @@
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+cd "$SCRIPT_DIR"/api
+
+MODE="dev"
+
+COMPOSE_FLAGS="-f docker-compose.base.yml -f docker-compose.dev.yml"
+PROJECT="api"
+OPERATION="up --build"
+#TODO: Create mode based on env
+
+UNAME_SYSTEM=$(uname -s)
+UNAME_ARCH=$(uname -p)
+
+if [ "$UNAME_SYSTEM" == "Darwin" ] && [ "$UNAME_ARCH" == "arm" ]; then
+  COMPOSE_FLAGS="$COMPOSE_FLAGS -f docker-compose.m1.yml"
+fi
+
+set -x
+docker-compose -p "$PROJECT" $COMPOSE_FLAGS $(echo "$OPERATION")

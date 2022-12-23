@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: postgis/postgis:14-3.2-alpine
@@ -18,16 +16,12 @@ services:
   hasura:
     image: hasura/graphql-engine:v2.6.2.cli-migrations-v3
     environment:
-      - HASURA_GRAPHQL_ADMIN_SECRET=dev_admin_secret
+      - HASURA_GRAPHQL_ADMIN_SECRET=rentify_secret
       - HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
       - HASURA_GRAPHQL_ENABLE_CONSOLE=false
       - HASURA_GRAPHQL_DEV_MODE=true
       - HASURA_GRAPHQL_INFER_FUNCTION_PERMISSIONS=false
       - HASURA_GRAPHQL_UNAUTHORIZED_ROLE=anonymous
-      - HASURA_GRAPHQL_ENABLE_REMOTE_SCHEMA_PERMISSIONS=true
-      - 'HASURA_GRAPHQL_JWT_SECRET={"type":"HS256","key":"development-api-jwt-super-secret", "claims_format": "stringified_json"}'
-      - HASURA_GRAPHQL_MIGRATIONS_DIR=/var/schema/migrations
-      - HASURA_GRAPHQL_METADATA_DIR=/var/schema/metadata
       - HASURA_GRAPHQL_LOG_LEVEL=info
       - HASURA_GRAPHQL_ENABLED_LOG_TYPES=startup,http-log,webhook-log,websocket-log,query-log
     restart: on-failure

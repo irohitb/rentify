@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "middleware",
   "version": "0.0.0",
   "description": "Backed which interacts with Hasura actions",
   "type": "module",

@@ -18,6 +18,7 @@ services:
     environment:
       - HASURA_GRAPHQL_ADMIN_SECRET=rentify_secret
       - HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - 'HASURA_GRAPHQL_JWT_SECRET={"type":"HS256","key":"development-api-jwt-super-secret", "claims_format": "stringified_json"}'
       - HASURA_GRAPHQL_ENABLE_CONSOLE=false
       - HASURA_GRAPHQL_DEV_MODE=true
       - HASURA_GRAPHQL_INFER_FUNCTION_PERMISSIONS=false

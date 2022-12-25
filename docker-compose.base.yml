@@ -16,7 +16,7 @@ services:
   hasura:
     image: hasura/graphql-engine:v2.6.2.cli-migrations-v3
     environment:
-      - HASURA_GRAPHQL_ADMIN_SECRET=rentify_secret
+      - HASURA_GRAPHQL_ADMIN_SECRET=dev_admin_secret
       - HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
       - 'HASURA_GRAPHQL_JWT_SECRET={"type":"HS256","key":"development-api-jwt-super-secret", "claims_format": "stringified_json"}'
       - HASURA_GRAPHQL_ENABLE_CONSOLE=false

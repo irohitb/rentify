@@ -1,0 +1,4 @@
+#!/bin/sh
+
+BASE_DIR="$(cd "$(dirname "$0")"; pwd)";
+node_modules/.bin/sqrly watch --path "$BASE_DIR"/hasura-backend/sql --db postgres://postgres:postgres@localhost:5432/postgres

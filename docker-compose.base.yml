@@ -24,6 +24,7 @@ services:
       - HASURA_GRAPHQL_INFER_FUNCTION_PERMISSIONS=false
       - HASURA_GRAPHQL_UNAUTHORIZED_ROLE=anonymous
       - HASURA_GRAPHQL_LOG_LEVEL=info
+      - ACTION_KEY=dev_action_key # Hasura actions call action handlers with this header.
       - HASURA_GRAPHQL_ENABLED_LOG_TYPES=startup,http-log,webhook-log,websocket-log,query-log
     restart: on-failure
     volumes:
@@ -31,3 +32,15 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+  middleware:
+    build: "./middleware"
+    command: ["/bin/sh", "-c", "yarn install && yarn run start:dev"]
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+      - "node_modules_middleware:/usr/src/app/node_modules"
+
+volumes:
+  pg_data:
+  node_modules_middleware:

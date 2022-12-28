@@ -40,18 +40,13 @@
   },
   "scripts": {
     "start": "nodemon src/server.ts",
-    "clean": "rimraf coverage build tmp",
-    "prebuild": "npm run lint",
-    "build": "tsc -p tsconfig.json",
-    "build:watch": "tsc -w -p tsconfig.json",
-    "build:release": "npm run clean && tsc -p tsconfig.release.json",
-    "lint": "eslint . --ext .ts --ext .mts",
-    "test": "jest --coverage",
-    "prettier": "prettier --config .prettierrc --write .",
-    "test:watch": "jest --watch"
+    "start:dev": "./start-dev"
   },
   "dependencies": {
+    "@types/command-line-args": "^5.2.0",
+    "command-line-args": "^5.2.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "express-prometheus-middleware": "^1.2.0",

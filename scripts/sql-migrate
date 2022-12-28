@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Usage:
+#
+#   sqrly-migrate <migration_name>
+#
+# or:
+#
+#   sqrly-migrate <migration_name> <diffbase>
+
+set -o
+set -x
+
+NAME="$1"
+
+if [ -z $NAME ]; then
+  echo "Hasura migration name is required."
+  exit 1
+fi
+
+BASE_DIR="$(cd "$(dirname "$0")"; pwd)";
+node_modules/.bin/sqrly migrate \
+  --name "$NAME" \
+  --path "$BASE_DIR"/hasura-backend/sql \
+  --hasura-dir "$BASE_DIR"/hasura-backend/schema \
+  --diff-base "${2:-HEAD}"

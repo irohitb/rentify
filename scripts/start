@@ -1,10 +1,10 @@
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cd "$SCRIPT_DIR"/middleware
-
+cd "$SCRIPT_DIR"/..
+echo "$SCRIPT_DIR"
 MODE="dev"
 
 COMPOSE_FLAGS="-f docker-compose.base.yml -f docker-compose.dev.yml"
-PROJECT="middleware"
+PROJECT="rentify"
 OPERATION="up --build"
 #TODO: Create mode based on env
 
@@ -16,4 +16,4 @@ if [ "$UNAME_SYSTEM" == "Darwin" ] && [ "$UNAME_ARCH" == "arm" ]; then
 fi
 
 set -x
-docker-compose -p "$PROJECT" $COMPOSE_FLAGS $(echo "$OPERATION")
+DOCKER_BUILDKIT=0 docker-compose -p "$PROJECT" $COMPOSE_FLAGS $(echo "$OPERATION")

@@ -22,6 +22,8 @@ interface IncomingMessageWithBody extends IncomingMessage {
   body: JSON;
 }
 
+const { INTERNAL_SERVER_ERROR } = StatusCodes;
+
 morgan.token('headers', function (req: IncomingMessageWithBody, _res) {
   return JSON.stringify(req.headers);
 });
@@ -72,7 +74,7 @@ if (process.env.NODE_ENV === 'production') {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   winston.error('An error occurred.', { message: err.message });
-  return res.status(StatusCodes.StatusCodes.INTERNAL_SERVER_ERROR).json({
+  return res.status(INTERNAL_SERVER_ERROR).json({
     error: err.message,
   });
 });

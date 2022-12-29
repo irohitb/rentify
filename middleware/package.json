@@ -39,8 +39,8 @@
     "exec": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./src"
   },
   "scripts": {
-    "start": "nodemon src/server.ts",
-    "start:dev": "./start-dev"
+    "start": "nodemon",
+    "start:dev": "nodemon"
   },
   "dependencies": {
     "@types/command-line-args": "^5.2.0",

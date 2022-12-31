@@ -19,8 +19,8 @@ if [ -z $NAME ]; then
 fi
 
 BASE_DIR="$(cd "$(dirname "$0")"; pwd)";
-node_modules/.bin/sqrly migrate \
+sqrly migrate \
   --name "$NAME" \
-  --path "$BASE_DIR"/hasura-backend/sql \
-  --hasura-dir "$BASE_DIR"/hasura-backend/schema \
+  --path "$BASE_DIR"/../hasura-backend/sql \
+  --hasura-dir "$BASE_DIR"/../hasura-backend \
   --diff-base "${2:-HEAD}"

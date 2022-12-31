@@ -1,4 +1,4 @@
-- name: rentify
+- name: default
   kind: postgres
   configuration:
     connection_info:
@@ -10,5 +10,5 @@
         connection_lifetime: 600
         retries: 1
         idle_timeout: 180
-        max_connections: 20
-  tables: "!include rentify/tables/tables.yaml"
+        max_connections: 50
+  tables: "!include default/tables/tables.yaml"

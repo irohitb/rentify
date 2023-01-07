@@ -2,7 +2,6 @@
 
 <img width="767" alt="Screenshot 2022-12-27 at 5 15 12 PM" src="https://user-images.githubusercontent.com/32276134/209662064-770331ee-ccec-4627-8fa5-4c56feaa2fb5.png">
 
-
 ## Prerequisites
 
 - Install [docker-compose](https://docs.docker.com/compose/install/)
@@ -16,6 +15,10 @@
 ```
 scripts/start
 ```
+
+### Mobile App.
+
+Create `.env` file and copy content from `dev.example` in App folder
 
 ### Code-flow-diagram
 

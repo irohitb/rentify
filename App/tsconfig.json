@@ -7,8 +7,8 @@
     /* Completeness */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "paths": {
-      "@landlord/*": ["./src/landlord/*"],
-      "@tenant/*": ["./src/tenant /*"],
+      "@owner/*": ["src/owner/*"],
+      "@tenant/*": ["./src/tenant/*"],
       "@components/*": ["./src/components/*"],
       "@utils/*": ["./src/utils/*"],
       "@src/*": ["./src/*"]

@@ -1,0 +1,1 @@
+alter table "public"."user" add constraint "user_mobile_number_key" unique ("mobile_number");

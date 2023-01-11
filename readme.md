@@ -10,6 +10,11 @@
 - Install node and yarn
 - cd `middleware` and `npm install`
 
+## Firebase Setup
+
+- We use firebase for authentication
+- To run firebase, pass in the `scripts/start --firebase` flag
+
 ### Run Project
 
 ```

@@ -11,6 +11,16 @@ OPERATION="up --build"
 UNAME_SYSTEM=$(uname -s)
 UNAME_ARCH=$(uname -p)
 
+for mode in "$@"
+do
+  echo "Mode is..."
+  if [ "$mode" == "firebase" ]; then
+    COMPOSE_FLAGS="$COMPOSE_FLAGS -f docker-compose.firebase.dev.yml"
+  fi
+done
+
+
+
 if [ "$UNAME_SYSTEM" == "Darwin" ] && [ "$UNAME_ARCH" == "arm" ]; then
   COMPOSE_FLAGS="$COMPOSE_FLAGS -f docker-compose.m1.yml"
 fi

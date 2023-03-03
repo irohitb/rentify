@@ -1,3 +1,30 @@
 table:
   schema: public
   name: user
+object_relationships:
+  - name: userRoleByUserRole
+    using:
+      foreign_key_constraint_on: user_role
+array_relationships:
+  - name: mobile_otps
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: mobile_otp
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - created_at
+        - email_address
+        - email_verified
+        - full_name
+        - id
+        - mobile_number
+        - mobile_verified
+        - updated_at
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
